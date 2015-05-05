@@ -15,12 +15,29 @@ let App = React.createClass({
   },
 
   _onChange() {
-    this.setState(TodoStore.getAll());
+    let self = this;
+
+    TodoStore.getAll().then(function(resp) {
+      self.setState({
+        tasks: resp.rows.map(row => row.doc)
+      });
+    }).catch(function (err) {
+      console.log(err);
+    });
   },
 
   componentDidMount() {
+    let self = this;
+
     TodoStore.addChangeListener(this._onChange);
-    this.setState(TodoStore.getAll());
+
+    TodoStore.getAll().then(function(resp) {
+      self.setState({
+        tasks: resp.rows.map(row => row.doc)
+      });
+    }).catch(function (err) {
+      console.log(err);
+    });
   },
 
   componentWillUnmount() {

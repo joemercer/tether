@@ -3,30 +3,41 @@ const Constants = require('../constants/AppConstants');
 const BaseStore = require('./BaseStore');
 const assign = require('object-assign');
 
-// data storage
-let _data = [
-  {
-    _id: 1,
-    to: 'Mom',
-    message: '',
-    completed: false,
-    score: 1500
-  },
-  {
-    _id: 2,
-    to: 'Grandma',
-    message: '',
-    completed: false,
-    score: 1400
-  },
-  {
-    _id: 3,
-    to: 'Jeff',
-    message: '',
-    completed: false,
-    score: 1100
-  }
-];
+const PouchDB = require('pouchdb');
+
+let db = new PouchDB('tasks');
+
+// db.put({
+//   _id: new Date().toJSON(),
+//   to: 'Mom',
+//   message: '',
+//   completed: false,
+//   score: 1500
+// }).then(function() {
+//   return db.put({
+//     _id: new Date().toJSON(),
+//     to: 'Grandma',
+//     message: '',
+//     completed: false,
+//     score: 1400
+//   });
+// }).then(function() {
+//   return db.put({
+//     _id: new Date().toJSON(),
+//     to: 'Jeff',
+//     message: '',
+//     completed: false,
+//     score: 1100
+//   });
+// }).then(function () {
+//   return db.allDocs({include_docs: true});
+// }).then(function (response) {
+//   console.log(response);
+// }).catch(function (err) {
+//   console.log(err);
+// });
+
+
 
 // task
 // - _id
@@ -36,19 +47,23 @@ let _data = [
 // - completed
 // - score (how important it is)
 
-let _id = 0;
+
 
 // add private functions to modify data
-function addItem(to, completed=false) {
-  _data.push({_id, to, completed});
-  _id++;
+function addItem(to, message='', completed=false, score=1500) {
+  db.put({
+    _id: new Date().toJSON(),
+    to: to,
+    message: message,
+    completed: completed,
+    score: score
+  });
 }
 
 function completeItem(_id) {
-  _data.forEach(function(task){
-    if (task._id) {
-      task.completed = true;
-    }
+  db.get('_id').then(function(doc) {
+    doc.completed = true;
+    db.put(doc);
   });
 }
 
@@ -57,9 +72,7 @@ let TodoStore = assign({}, BaseStore, {
 
   // public methods used by Controller-View to operate on data
   getAll() {
-    return {
-      tasks: _data
-    };
+    return db.allDocs({include_docs: true});
   },
 
   // register store with dispatcher, allowing actions to flow through
