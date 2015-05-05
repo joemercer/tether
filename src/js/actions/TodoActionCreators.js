@@ -10,15 +10,10 @@ module.exports = {
     });
   },
 
-  clearList: function() {
-    AppDispatcher.handleViewAction({
-      type: Constants.ActionTypes.CLEAR_TASKS
-    });
-  },
-
   completeTask: function(task) {
-    console.warn('completeTask action not yet implemented...');
-    console.log('just tried to complete a task');
+    AppDispatcher.handleViewAction({
+      type: Constants.ActionTypes.COMPLETE_TASK
+    });
   }
 
 };

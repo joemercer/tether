@@ -27,7 +27,7 @@ let Task = React.createClass({
       <label>
         <Checkbox name="checkboxName" ref="checkbox" checked={task.completed}
           onChange={this.handleToggle.bind(this, task)} value="on" />
-        <span className="checkbox-label">{task.title}</span>
+        <span className="checkbox-label">{task.to}</span>
       </label>
     );
   }

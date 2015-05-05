@@ -4,17 +4,52 @@ const BaseStore = require('./BaseStore');
 const assign = require('object-assign');
 
 // data storage
-let _data = [];
-let _id = 1;
+let _data = [
+  {
+    _id: 1,
+    to: 'Mom',
+    message: '',
+    completed: false,
+    score: 1500
+  },
+  {
+    _id: 2,
+    to: 'Grandma',
+    message: '',
+    completed: false,
+    score: 1400
+  },
+  {
+    _id: 3,
+    to: 'Jeff',
+    message: '',
+    completed: false,
+    score: 1100
+  }
+];
+
+// task
+// - _id
+// - text
+// - createdTime
+// - generatorId (thing that generated it)
+// - completed
+// - score (how important it is)
+
+let _id = 0;
 
 // add private functions to modify data
-function addItem(title, completed=false) {
-  _data.push({_id, title, completed});
+function addItem(to, completed=false) {
+  _data.push({_id, to, completed});
   _id++;
 }
 
-function clearItems() {
-  _data = [];
+function completeItem(_id) {
+  _data.forEach(function(task){
+    if (task._id) {
+      task.completed = true;
+    }
+  });
 }
 
 // Facebook style store creation.
@@ -32,6 +67,7 @@ let TodoStore = assign({}, BaseStore, {
     let action = payload.action;
 
     switch(action.type) {
+      // add a task
       case Constants.ActionTypes.ADD_TASK:
         let text = action.text.trim();
         // NOTE: if this action needs to wait on another store:
@@ -42,8 +78,9 @@ let TodoStore = assign({}, BaseStore, {
           TodoStore.emitChange();
         }
         break;
-      case Constants.ActionTypes.CLEAR_TASKS:
-        clearItems();
+      // complete a task
+      case Constants.ActionTypes.COMPLETE_TASK:
+        completeItem(action._id);
         TodoStore.emitChange();
         break;
 

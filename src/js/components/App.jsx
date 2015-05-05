@@ -20,6 +20,7 @@ let App = React.createClass({
 
   componentDidMount() {
     TodoStore.addChangeListener(this._onChange);
+    this.setState(TodoStore.getAll());
   },
 
   componentWillUnmount() {
@@ -34,7 +35,7 @@ let App = React.createClass({
   },
 
   handleClearListClick(e) {
-    ActionCreator.clearList();
+    console.log('nothing');
   },
 
   render() {
