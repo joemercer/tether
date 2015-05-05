@@ -5,10 +5,16 @@ const assign = require('object-assign');
 
 // data storage
 let _data = [];
+let _id = 1;
 
 // add private functions to modify data
 function addItem(title, completed=false) {
-  _data.push({title, completed});
+  _data.push({_id, title, completed});
+  _id++;
+}
+
+function clearItems() {
+  _data = [];
 }
 
 // Facebook style store creation.
@@ -35,6 +41,10 @@ let TodoStore = assign({}, BaseStore, {
           addItem(text);
           TodoStore.emitChange();
         }
+        break;
+      case Constants.ActionTypes.CLEAR_TASKS:
+        clearItems();
+        TodoStore.emitChange();
         break;
 
       // add more cases for other actionTypes...

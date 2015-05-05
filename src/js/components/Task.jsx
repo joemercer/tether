@@ -8,6 +8,7 @@ let Task = React.createClass({
   getDefaultProps() {
     return {
       task: {
+        _id: 0,
         title: '',
         completed: false
       }

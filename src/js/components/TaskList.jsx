@@ -16,7 +16,7 @@ let TaskList = React.createClass({
     return (
       <form id="task-list">
         {tasks.map(task =>
-          <Task task={task} />
+          <Task key={task._id} task={task} />
         )}
       </form>
     );
