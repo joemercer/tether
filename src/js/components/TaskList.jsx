@@ -1,8 +1,8 @@
 const React = require('react');
 const Task = require('./Task.jsx');
-const mui = require('material-ui');
+// const mui = require('material-ui');
 
-let {Paper} = mui;
+// let {Paper} = mui;
 
 let TaskList = React.createClass({
   getDefaultProps() {
@@ -14,11 +14,11 @@ let TaskList = React.createClass({
   render() {
     let {tasks} = this.props;
     return (
-      <form id="task-list">
+      <ul id="task-list">
         {tasks.map(task =>
           <Task key={task._id} task={task} />
         )}
-      </form>
+      </ul>
     );
   }
 });

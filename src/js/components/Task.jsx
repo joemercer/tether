@@ -17,18 +17,26 @@ let Task = React.createClass({
 
   handleToggle(task) {
     if (this.refs.checkbox.getDOMNode().checked) {
+      debugger;
       ActionCreator.completeTask(task);
     }
+  },
+
+  handleClick(task) {
+    debugger;
   },
 
   render() {
     let {task} = this.props;
     return (
-      <label>
+      <li>
+        <p onClick={this.handleClick.bind(this, task)}>
+          Click to toggle.
+        </p>
         <Checkbox name="checkboxName" ref="checkbox" checked={task.completed}
-          onChange={this.handleToggle.bind(this, task)} value="on" />
+          onClick={this.handleToggle.bind(this, task)} value="on" />
         <span className="checkbox-label">{task.to}</span>
-      </label>
+      </li>
     );
   }
 });
