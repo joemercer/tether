@@ -53,6 +53,7 @@ let App = React.createClass({
 
   handleClearListClick(e) {
     console.log('nothing');
+    
   },
 
   render() {

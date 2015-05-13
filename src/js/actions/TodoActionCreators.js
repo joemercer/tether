@@ -12,7 +12,8 @@ module.exports = {
 
   completeTask: function(task) {
     AppDispatcher.handleViewAction({
-      type: Constants.ActionTypes.COMPLETE_TASK
+      type: Constants.ActionTypes.COMPLETE_TASK,
+      task: task
     });
   }
 

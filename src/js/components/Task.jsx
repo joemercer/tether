@@ -2,40 +2,31 @@ const React = require('react');
 const ActionCreator = require('../actions/TodoActionCreators');
 const mui = require('material-ui');
 
-let {Checkbox} = mui;
+let {FlatButton} = mui;
 
 let Task = React.createClass({
   getDefaultProps() {
     return {
       task: {
         _id: 0,
-        title: '',
+        to: '',
+        message: '',
         completed: false
       }
     };
   },
 
-  handleToggle(task) {
-    if (this.refs.checkbox.getDOMNode().checked) {
-      debugger;
-      ActionCreator.completeTask(task);
-    }
-  },
-
   handleClick(task) {
-    debugger;
+    ActionCreator.completeTask(task);
   },
 
   render() {
     let {task} = this.props;
     return (
-      <li>
-        <p onClick={this.handleClick.bind(this, task)}>
-          Click to toggle.
-        </p>
-        <Checkbox name="checkboxName" ref="checkbox" checked={task.completed}
-          onClick={this.handleToggle.bind(this, task)} value="on" />
-        <span className="checkbox-label">{task.to}</span>
+      <li className="task-item">
+        <h4>{task.to}</h4>
+        <p>{task.message}</p>
+        <FlatButton label="Button" primary={true} onClick={this.handleClick.bind(this, task)} />
       </li>
     );
   }

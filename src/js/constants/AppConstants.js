@@ -4,7 +4,7 @@ module.exports = {
 
   ActionTypes: keyMirror({
     ADD_TASK: null,
-    CLEAR_TASKS: null
+    COMPLETE_TASK: null
   }),
 
   ActionSources: keyMirror({

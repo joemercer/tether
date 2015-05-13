@@ -93,7 +93,7 @@ let TodoStore = assign({}, BaseStore, {
         break;
       // complete a task
       case Constants.ActionTypes.COMPLETE_TASK:
-        completeItem(action._id);
+        payload.action.task.completed = true;
         TodoStore.emitChange();
         break;
 
