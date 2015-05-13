@@ -61,7 +61,7 @@ function addItem(to, message='', completed=false, score=1500) {
 }
 
 function completeItem(_id) {
-  db.get('_id').then(function(doc) {
+  return db.get(_id).then(function(doc){
     doc.completed = true;
     db.put(doc);
   });
@@ -72,7 +72,39 @@ let TodoStore = assign({}, BaseStore, {
 
   // public methods used by Controller-View to operate on data
   getAll() {
-    return db.allDocs({include_docs: true});
+    return db.allDocs({include_docs: true}).then(function(resp){
+      return new Promise(function(resolve, reject){
+        if (resp) {
+          resolve(resp.rows.map(row => row.doc));
+        }
+        else {
+          reject({error: 'ERROR: no response'});
+        }
+      });
+    });
+  },
+
+  // return all documents filtered by filter
+  getFiltered(filter) {
+    return db.allDocs({include_docs: true}).then(function(resp){
+      return new Promise(function(resolve, reject){
+        if (resp) {
+          resolve(resp.rows.map(row => row.doc));
+        }
+        else {
+          reject({error: 'ERROR: no response'});
+        }
+      });
+    }).then(function(resp){
+      return new Promise(function(resolve, reject){
+        if (!resp.error) {
+          resolve(resp.filter(filter));
+        }
+        else {
+          reject({error: 'ERROR: no response'});
+        }
+      });
+    });
   },
 
   // register store with dispatcher, allowing actions to flow through
@@ -93,8 +125,9 @@ let TodoStore = assign({}, BaseStore, {
         break;
       // complete a task
       case Constants.ActionTypes.COMPLETE_TASK:
-        payload.action.task.completed = true;
-        TodoStore.emitChange();
+        completeItem(action.task._id).then(function(resp){
+          TodoStore.emitChange();
+        });
         break;
 
       // add more cases for other actionTypes...
