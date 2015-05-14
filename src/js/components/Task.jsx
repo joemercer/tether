@@ -2,8 +2,13 @@ const React = require('react');
 const ActionCreator = require('../actions/TodoActionCreators');
 const mui = require('material-ui');
 const Message = require('./Message.jsx');
+const debounce = require('lodash.debounce');
 
 let {FlatButton} = mui;
+
+let updateTask = debounce(function(task){
+  ActionCreator.updateTask(task);
+}, 1000);
 
 let Task = React.createClass({
   getDefaultProps() {
@@ -20,7 +25,7 @@ let Task = React.createClass({
   handleChange(evt){
     let task = this.props.task;
     task.message = evt.target.value;
-    ActionCreator.updateTask(task);
+    updateTask(task);
   },
 
   handleClick(task) {
