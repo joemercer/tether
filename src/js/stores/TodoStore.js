@@ -67,13 +67,6 @@ function updateItem(item) {
   return db.get(item._id).then(updateItem);
 };
 
-function completeItem(_id) {
-  return db.get(_id).then(function(doc){
-    doc.completed = true;
-    db.put(doc);
-  });
-};
-
 // Facebook style store creation.
 let TodoStore = assign({}, BaseStore, {
 
@@ -133,12 +126,6 @@ let TodoStore = assign({}, BaseStore, {
       // update a task
       case Constants.ActionTypes.UPDATE_TASK:
         updateItem(action.task).then(function(resp){
-          TodoStore.emitChange();
-        });
-        break;
-      // complete a task
-      case Constants.ActionTypes.COMPLETE_TASK:
-        completeItem(action.task._id).then(function(resp){
           TodoStore.emitChange();
         });
         break;

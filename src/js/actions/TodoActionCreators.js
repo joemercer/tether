@@ -15,13 +15,6 @@ module.exports = {
       type: Constants.ActionTypes.UPDATE_TASK,
       task: task
     });
-  },
-
-  completeTask: function(task) {
-    AppDispatcher.handleViewAction({
-      type: Constants.ActionTypes.COMPLETE_TASK,
-      task: task
-    });
   }
 
 };

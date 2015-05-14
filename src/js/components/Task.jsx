@@ -6,9 +6,9 @@ const debounce = require('lodash.debounce');
 
 let {FlatButton} = mui;
 
-let updateTask = debounce(function(task){
+var UpdateTaskInstantly = function(task){
   ActionCreator.updateTask(task);
-}, 1000);
+};
 
 let Task = React.createClass({
   getDefaultProps() {
@@ -22,14 +22,18 @@ let Task = React.createClass({
     };
   },
 
+  _updateTaskInstantly: UpdateTaskInstantly,
+  _updateTask: debounce(UpdateTaskInstantly, 1000),
+
   handleChange(evt){
     let task = this.props.task;
     task.message = evt.target.value;
-    updateTask(task);
+    this._updateTask(task);
   },
 
   handleClick(task) {
-    ActionCreator.completeTask(task);
+    task.completed = true;
+    this._updateTaskInstantly(task);
   },
 
   render() {
