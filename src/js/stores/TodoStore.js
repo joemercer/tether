@@ -58,14 +58,21 @@ function addItem(to, message='', completed=false, score=1500) {
     completed: completed,
     score: score
   });
-}
+};
+
+function updateItem(item) {
+  var updateItem = function(doc){
+    db.put(item);
+  };
+  return db.get(item._id).then(updateItem);
+};
 
 function completeItem(_id) {
   return db.get(_id).then(function(doc){
     doc.completed = true;
     db.put(doc);
   });
-}
+};
 
 // Facebook style store creation.
 let TodoStore = assign({}, BaseStore, {
@@ -122,6 +129,12 @@ let TodoStore = assign({}, BaseStore, {
           addItem(text);
           TodoStore.emitChange();
         }
+        break;
+      // update a task
+      case Constants.ActionTypes.UPDATE_TASK:
+        updateItem(action.task).then(function(resp){
+          TodoStore.emitChange();
+        });
         break;
       // complete a task
       case Constants.ActionTypes.COMPLETE_TASK:
