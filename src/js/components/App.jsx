@@ -1,8 +1,7 @@
 const React = require('react');
 const TodoStore = require('../stores/TodoStore');
 const ContactStore = require('../stores/ContactStore');
-const ActionCreator = require('../actions/TodoActionCreators');
-const ContactActionCreator = require('../actions/ContactActionCreators');
+const ActionCreator = require('../actions/ActionCreators');
 const TaskList = require('./TaskList.jsx');
 const mui = require('material-ui');
 
@@ -53,12 +52,14 @@ let App = React.createClass({
   handleAddNewClick(e) {
     let title = prompt('Enter task title:');
     if (title) {
-      ActionCreator.addItem(title);
+      ActionCreator.Messages.add({
+        to: title
+      });
     }
   },
 
   handleClearListClick(e) {
-    ContactActionCreator.createMessages();
+    ActionCreator.Contacts.createMessages();
   },
 
   render() {

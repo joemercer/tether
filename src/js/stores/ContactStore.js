@@ -30,8 +30,7 @@ const AppDispatcher = require('../dispatchers/AppDispatcher');
 const Constants = require('../constants/AppConstants');
 const BaseStore = require('./BaseStore');
 const assign = require('object-assign');
-const ActionCreator = require('../actions/TodoActionCreators');
-const ContactActionCreator = require('../actions/ContactActionCreators');
+const ActionCreator = require('../actions/ActionCreators');
 
 const PouchDB = require('pouchdb');
 
@@ -74,12 +73,13 @@ function createMessages() {
 			return (now >= contact.nextTimeToSendMessage);
 		}).forEach(function(contact){
 			// addTask
-			ActionCreator.addItem(contact.name);
+			ActionCreator.Messages.add({
+				to: contact.name
+			});
 			// updateContact
-			var now = new Date();
-			now.setTime(now.getTime() + 60*1000);
+			now.setTime(now.getTime() + 5*1000);
 			contact.nextTimeToSendMessage = now;
-			ContactActionCreator.updateContact(contact);
+			ActionCreator.Contacts.update(contact);
 		});
 	});
 };
@@ -101,8 +101,9 @@ let ContactStore = assign({}, BaseStore, {
       case Constants.ActionTypes.CREATE_MESSAGES:
       	createMessages();
         break;
+      // update contact
       case Constants.ActionTypes.UPDATE_CONTACT:
-      	updateItem(action.contact).then(function(resp){
+      	updateItem(action.item).then(function(resp){
           ContactStore.emitChange();
         });
         break;

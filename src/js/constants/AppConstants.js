@@ -3,10 +3,11 @@ const keyMirror = require('react/lib/keyMirror');
 module.exports = {
 
   ActionTypes: keyMirror({
-    ADD_TASK: null,
-    UPDATE_TASK: null,
-    CREATE_MESSAGES: null,
-    UPDATE_CONTACT: null
+  	ADD_CONTACT: null,
+  	UPDATE_CONTACT: null,
+  	CREATE_MESSAGES: null,
+  	ADD_MESSAGE: null,
+  	UPDATE_MESSAGE: null
   }),
 
   ActionSources: keyMirror({

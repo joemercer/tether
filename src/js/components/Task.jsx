@@ -1,5 +1,5 @@
 const React = require('react');
-const ActionCreator = require('../actions/TodoActionCreators');
+const ActionCreator = require('../actions/ActionCreators');
 const mui = require('material-ui');
 const Message = require('./Message.jsx');
 const debounce = require('lodash.debounce');
@@ -7,7 +7,7 @@ const debounce = require('lodash.debounce');
 let {FlatButton} = mui;
 
 var UpdateTaskInstantly = function(task){
-  ActionCreator.updateTask(task);
+  ActionCreator.Messages.update(task);
 };
 
 let Task = React.createClass({

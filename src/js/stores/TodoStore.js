@@ -113,8 +113,8 @@ let TodoStore = assign({}, BaseStore, {
 
     switch(action.type) {
       // add a task
-      case Constants.ActionTypes.ADD_TASK:
-        let text = action.text.trim();
+      case Constants.ActionTypes.ADD_MESSAGE:
+        let text = action.item.to.trim();
         // NOTE: if this action needs to wait on another store:
         // AppDispatcher.waitFor([OtherStore.dispatchToken]);
         // For details, see: http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html#why-we-need-a-dispatcher
@@ -124,8 +124,8 @@ let TodoStore = assign({}, BaseStore, {
         }
         break;
       // update a task
-      case Constants.ActionTypes.UPDATE_TASK:
-        updateItem(action.task).then(function(resp){
+      case Constants.ActionTypes.UPDATE_MESSAGE:
+        updateItem(action.item).then(function(resp){
           TodoStore.emitChange();
         });
         break;
