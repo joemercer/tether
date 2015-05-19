@@ -1,6 +1,8 @@
 const React = require('react');
 const TodoStore = require('../stores/TodoStore');
+const ContactStore = require('../stores/ContactStore');
 const ActionCreator = require('../actions/TodoActionCreators');
+const ContactActionCreator = require('../actions/ContactActionCreators');
 const TaskList = require('./TaskList.jsx');
 const mui = require('material-ui');
 
@@ -56,8 +58,7 @@ let App = React.createClass({
   },
 
   handleClearListClick(e) {
-    console.log('nothing');
-
+    ContactActionCreator.createMessages();
   },
 
   render() {
@@ -68,8 +69,8 @@ let App = React.createClass({
 
         <TaskList tasks={tasks} />
 
-        <RaisedButton label="Add Task" primary={true} onClick={this.handleAddNewClick} />
-        <RaisedButton label="Clear List" secondary={true} onClick={this.handleClearListClick} />
+        <RaisedButton label="Force Add Task" primary={true} onClick={this.handleAddNewClick} />
+        <RaisedButton label="Create Messages" secondary={true} onClick={this.handleClearListClick} />
       </div>
     );
   }
