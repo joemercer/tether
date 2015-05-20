@@ -1,5 +1,5 @@
 const React = require('react');
-const TodoStore = require('../stores/TodoStore');
+const MessageStore = require('../stores/MessageStore');
 const ContactStore = require('../stores/ContactStore');
 const ActionCreator = require('../actions/ActionCreators');
 const TaskList = require('./TaskList.jsx');
@@ -18,7 +18,7 @@ let App = React.createClass({
   _onChange() {
     let self = this;
 
-    TodoStore.getFiltered(function(task){
+    MessageStore.getFiltered(function(task){
       return !task.completed;
     }).then(function(tasks){
       self.setState({
@@ -32,9 +32,9 @@ let App = React.createClass({
   componentDidMount() {
     let self = this;
 
-    TodoStore.addChangeListener(this._onChange);
+    MessageStore.addChangeListener(this._onChange);
 
-    TodoStore.getFiltered(function(task){
+    MessageStore.getFiltered(function(task){
       return !task.completed;
     }).then(function(tasks){
       self.setState({
@@ -46,16 +46,17 @@ let App = React.createClass({
   },
 
   componentWillUnmount() {
-    TodoStore.removeChangeListener(this._onChange);
+    MessageStore.removeChangeListener(this._onChange);
   },
 
   handleAddNewClick(e) {
-    let title = prompt('Enter task title:');
-    if (title) {
-      ActionCreator.Messages.add({
-        to: title
-      });
-    }
+    console.log('do nothing');
+    // let title = prompt('Enter task title:');
+    // if (title) {
+    //   ActionCreator.Messages.add({
+    //     to: title
+    //   });
+    // }
   },
 
   handleClearListClick(e) {

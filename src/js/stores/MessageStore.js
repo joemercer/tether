@@ -5,53 +5,11 @@ const assign = require('object-assign');
 
 const PouchDB = require('pouchdb');
 
-let db = new PouchDB('tasks');
-
-// db.put({
-//   _id: new Date().toJSON(),
-//   to: 'Mom',
-//   message: '',
-//   completed: false,
-//   score: 1500
-// }).then(function() {
-//   return db.put({
-//     _id: new Date().toJSON(),
-//     to: 'Grandma',
-//     message: '',
-//     completed: false,
-//     score: 1400
-//   });
-// }).then(function() {
-//   return db.put({
-//     _id: new Date().toJSON(),
-//     to: 'Jeff',
-//     message: '',
-//     completed: false,
-//     score: 1100
-//   });
-// }).then(function () {
-//   return db.allDocs({include_docs: true});
-// }).then(function (response) {
-//   console.log(response);
-// }).catch(function (err) {
-//   console.log(err);
-// });
-
-
-
-// task
-// - _id
-// - text
-// - createdTime
-// - generatorId (thing that generated it)
-// - completed
-// - score (how important it is)
-
-
+let db = new PouchDB('messages');
 
 // add private functions to modify data
 function addItem(to, message='', completed=false, score=1500) {
-  db.put({
+  return db.put({
     _id: new Date().toJSON(),
     to: to,
     message: message,
@@ -68,7 +26,7 @@ function updateItem(item) {
 };
 
 // Facebook style store creation.
-let TodoStore = assign({}, BaseStore, {
+let MessageStore = assign({}, BaseStore, {
 
   // public methods used by Controller-View to operate on data
   getAll() {
@@ -120,13 +78,13 @@ let TodoStore = assign({}, BaseStore, {
         // For details, see: http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html#why-we-need-a-dispatcher
         if (text !== '') {
           addItem(text);
-          TodoStore.emitChange();
+          MessageStore.emitChange();
         }
         break;
       // update a task
       case Constants.ActionTypes.UPDATE_MESSAGE:
         updateItem(action.item).then(function(resp){
-          TodoStore.emitChange();
+          MessageStore.emitChange();
         });
         break;
 
@@ -136,4 +94,4 @@ let TodoStore = assign({}, BaseStore, {
 
 });
 
-module.exports = TodoStore;
+module.exports = MessageStore;
