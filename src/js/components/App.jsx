@@ -2,6 +2,7 @@ const React = require('react');
 const MessageStore = require('../stores/MessageStore');
 const ContactStore = require('../stores/ContactStore');
 const ActionCreator = require('../actions/ActionCreators');
+const Toolbar = require('./Toolbar.jsx');
 const TaskList = require('./TaskList.jsx');
 const mui = require('material-ui');
 
@@ -67,6 +68,7 @@ let App = React.createClass({
     let {tasks} = this.state;
     return (
       <div className="example-page">
+        <Toolbar />
         <h1>Tether</h1>
 
         <TaskList tasks={tasks} />
