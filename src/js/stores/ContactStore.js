@@ -38,7 +38,7 @@ let db = new PouchDB('contacts');
 
 function addItem(name, cadence) {
 	var now = new Date();
-  db.put({
+  return db.put({
     _id: new Date().toJSON(),
     name: name,
     cadence: cadence, // number of messages to send monthly
@@ -97,15 +97,21 @@ let ContactStore = assign({}, BaseStore, {
     let action = payload.action;
 
     switch(action.type) {
-      // create new messages
-      case Constants.ActionTypes.CREATE_MESSAGES:
-      	createMessages();
+    	// add new contact
+      case Constants.ActionTypes.ADD_CONTACT:
+      	addItem(action.item.name, action.item.cadence).then(function(resp){
+      		ContactStore.emitChange();
+      	});
         break;
-      // update contact
+    	// update contact
       case Constants.ActionTypes.UPDATE_CONTACT:
       	updateItem(action.item).then(function(resp){
           ContactStore.emitChange();
         });
+        break;
+      // create new messages
+      case Constants.ActionTypes.CREATE_MESSAGES:
+      	createMessages();
         break;
     }
   })
