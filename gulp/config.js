@@ -14,7 +14,8 @@ module.exports = {
     }
   },
   less: {
-    src: src + '/styles/**/*.{less,css}',
+    // src: src + '/styles/**/*.{less,css}',
+    src: src + '/styles/main.less',
     dest: dest + '/styles',
     settings: {}
   },

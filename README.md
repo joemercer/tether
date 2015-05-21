@@ -36,3 +36,12 @@ $ yo flux:action ActionCreatorName
 ```bash
 $ yo flux:store StoreName
 ```
+
+
+# NOTES
+
+Also need to build Semantic
+- navigate to /src/semantic
+- run "gulp build"
+- !!! should probably keep all of /semantic out of source code control
+- since it can be rebuilt from whatever the semantic-ui build thing is

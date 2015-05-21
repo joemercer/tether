@@ -5,7 +5,7 @@ const mui = require('material-ui');
 let {Toolbar, ToolbarGroup, DropDownMenu, FontIcon, DropDownIcon, RaisedButton} = mui;
 
 window.$ = window.jQuery = require('jquery');
-const Semantic = require('../../../node_modules/semantic/dist/semantic.min.js');
+const Semantic = require('../../semantic/dist/semantic.min.js');
 
 let Button = require('react-semantify').Button;
 
