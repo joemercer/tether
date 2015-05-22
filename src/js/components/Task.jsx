@@ -1,12 +1,14 @@
 const React = require('react');
 const ActionCreator = require('../actions/ActionCreators');
-const mui = require('material-ui');
+
 const Message = require('./Message.jsx');
+
 const debounce = require('lodash.debounce');
 
-let {FlatButton} = mui;
 
-var UpdateTaskInstantly = function(task){
+// function for updating a task
+// created here so we can debounce it later
+const UpdateTaskInstantly = function(task){
   ActionCreator.Messages.update(task);
 };
 
@@ -25,9 +27,9 @@ let Task = React.createClass({
   _updateTaskInstantly: UpdateTaskInstantly,
   _updateTask: debounce(UpdateTaskInstantly, 1000),
 
-  handleChange(evt){
+  handleChange(e){
     let task = this.props.task;
-    task.message = evt.target.value;
+    task.message = e.target.value;
     this._updateTask(task);
   },
 
@@ -42,8 +44,8 @@ let Task = React.createClass({
       <li className="task-item">
         <h4>{task.to}</h4>
         <Message html={task.message} onChange={this.handleChange} />
-        <p>{task.message}</p>
-        <FlatButton label="Button" primary={true} onClick={this.handleClick.bind(this, task)} />
+        <p>Saved: {task.message}</p>
+        <button className="ui button" onClick={this.handleClick.bind(this, task)}>Send</button>
       </li>
     );
   }
