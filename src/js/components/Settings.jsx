@@ -2,7 +2,6 @@ const React = require('react');
 
 const AddContactForm = require('./AddContactForm.jsx');
 
-
 let Settings = React.createClass({
 
   render() {

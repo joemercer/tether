@@ -1,26 +1,9 @@
 const React = require('react');
-const ActionCreator = require('../actions/ActionCreators');
 
-// const AddContactForm = require('./AddContactForm.jsx');
-
-window.$ = window.jQuery = require('jquery');
-const Semantic = require('../../semantic/dist/semantic.min.js');
-
-
-
-// let Button = require('react-semantify').Button;
-
-
+var Router = require('react-router');
+var Link = Router.Link;
 
 let Toolbar = React.createClass({
-
-  triggerAddNewContact(e) {
-    $('.ui.modal').modal('show');
-  },
-
-  updateName(e) {
-    debugger;
-  },
 
   render() {
     return (
@@ -36,11 +19,10 @@ let Toolbar = React.createClass({
         </div>
 
         <div className="right menu">
+          <Link to="app"><a className="item"><i className="home icon"></i> Home</a></Link>
+          <Link to="settings"><a className="item"><i className="settings icon"></i> Settings</a></Link>
           <div className="item">
-            <div className="ui button" onClick={this.triggerAddNewContact}>Open Modal</div>
-          </div>
-          <div className="item">
-            <div className="ui primary button">Sign up</div>
+            <button className="ui primary button">Sign up</button>
           </div>
         </div>
 
