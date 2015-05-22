@@ -1,13 +1,6 @@
 const React = require('react');
 const ActionCreator = require('../actions/ActionCreators');
 
-// window.$ = window.jQuery = require('jquery');
-// const Semantic = require('../../semantic/dist/semantic.min.js');
-
-// let Button = require('react-semantify').Button;
-
-
-
 let AddContactForm = React.createClass({
 
   getDefaultProps() {
@@ -42,7 +35,7 @@ let AddContactForm = React.createClass({
         <div className="grouped fields">
           <label htmlFor="alone">How frequently would you like to contact this person?</label>
           <div className="field">
-            <div className="ui radio checkbox checked">
+            <div className="ui radio checkbox">
               <input type="radio" name="cadence" />
               <label>Twice weekly</label>
             </div>
