@@ -4,7 +4,7 @@ const ActionCreator = require('../actions/ActionCreators');
 const Router = require('react-router'); 
 const RouteHandler = Router.RouteHandler;
 
-const Toolbar = require('./Toolbar.jsx');
+const Header = require('./Header.jsx');
 
 let App = React.createClass({
 
@@ -14,8 +14,8 @@ let App = React.createClass({
 
   render() {
     return (
-      <div className="example-page">
-        <Toolbar />
+      <div className="content">
+        <Header />
         <h1>Tether</h1>
         <button className="ui button" onClick={this.createMessages}>Create More Messages</button>
         <br />

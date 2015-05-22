@@ -3,7 +3,7 @@ const React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
 
-let Toolbar = React.createClass({
+let Header = React.createClass({
 
   render() {
     return (
@@ -32,4 +32,4 @@ let Toolbar = React.createClass({
 
 });
 
-module.exports = Toolbar;
+module.exports = Header;

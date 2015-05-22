@@ -11,7 +11,7 @@ let TaskList = React.createClass({
   render() {
     let {tasks} = this.props;
     return (
-      <ul id="task-list">
+      <ul className="task-list">
         {tasks.map(task =>
           <Task key={task._id} task={task} />
         )}
