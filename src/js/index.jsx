@@ -1,8 +1,9 @@
 const React = require('react');
+
 const App = require('./components/App.jsx');
 
 const Dashboard = require('./components/Dashboard.jsx');
-const AddContactForm = require('./components/AddContactForm.jsx');
+const Settings = require('./components/Settings.jsx');
 
 // # Routes
 
@@ -13,12 +14,10 @@ const Route = Router.Route;
 let routes = (
   <Route name="app" path="/" handler={App}>
   	<DefaultRoute handler={Dashboard}/>
-    <Route name="add" handler={AddContactForm}/>
+    <Route name="settings" handler={Settings}/>
   </Route>
 );
 
 Router.run(routes, function (Handler) {
   React.render(<Handler/>, document.body);
 });
-
-// React.render(<App />, document.getElementById('main'));

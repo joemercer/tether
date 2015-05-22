@@ -34,7 +34,6 @@ let App = React.createClass({
     return (
       <div className="example-page">
         <Toolbar />
-        <AddContactForm />
         <h1>Tether</h1>
 
         <RouteHandler />
