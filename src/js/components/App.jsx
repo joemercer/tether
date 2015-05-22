@@ -8,6 +8,8 @@ const mui = require('material-ui');
 
 let {RaisedButton} = mui;
 
+const AddContactForm = require('./AddContactForm.jsx');
+
 let App = React.createClass({
 
   getInitialState() {
@@ -69,6 +71,7 @@ let App = React.createClass({
     return (
       <div className="example-page">
         <Toolbar />
+        <AddContactForm />
         <h1>Tether</h1>
 
         <TaskList tasks={tasks} />
