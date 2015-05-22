@@ -1,32 +1,14 @@
 const React = require('react');
-const MessageStore = require('../stores/MessageStore');
-const ContactStore = require('../stores/ContactStore');
 const ActionCreator = require('../actions/ActionCreators');
+
+const Router = require('react-router'); 
+const RouteHandler = Router.RouteHandler;
+
 const Toolbar = require('./Toolbar.jsx');
-const TaskList = require('./TaskList.jsx');
-const mui = require('material-ui');
-
-let {RaisedButton} = mui;
-
-const AddContactForm = require('./AddContactForm.jsx');
-
-var Router = require('react-router'); 
-var RouteHandler = Router.RouteHandler;
-
 
 let App = React.createClass({
 
-  handleAddNewClick(e) {
-    console.log('do nothing');
-    // let title = prompt('Enter task title:');
-    // if (title) {
-    //   ActionCreator.Messages.add({
-    //     to: title
-    //   });
-    // }
-  },
-
-  handleClearListClick(e) {
+  createMessages(e) {
     ActionCreator.Contacts.createMessages();
   },
 
@@ -35,11 +17,11 @@ let App = React.createClass({
       <div className="example-page">
         <Toolbar />
         <h1>Tether</h1>
+        <button className="ui button" onClick={this.createMessages}>Create More Messages</button>
+        <br />
+        <hr />
 
         <RouteHandler />
-
-        <RaisedButton label="Force Add Task" primary={true} onClick={this.handleAddNewClick} />
-        <RaisedButton label="Create Messages" secondary={true} onClick={this.handleClearListClick} />
       </div>
     );
   }
