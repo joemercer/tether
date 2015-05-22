@@ -1,4 +1,24 @@
 const React = require('react');
 const App = require('./components/App.jsx');
 
-React.render(<App />, document.getElementById('main'));
+const Dashboard = require('./components/Dashboard.jsx');
+const AddContactForm = require('./components/AddContactForm.jsx');
+
+// # Routes
+
+const Router = require('react-router');
+const DefaultRoute = Router.DefaultRoute;
+const Route = Router.Route;
+
+let routes = (
+  <Route name="app" path="/" handler={App}>
+  	<DefaultRoute handler={Dashboard}/>
+    <Route name="add" handler={AddContactForm}/>
+  </Route>
+);
+
+Router.run(routes, function (Handler) {
+  React.render(<Handler/>, document.body);
+});
+
+// React.render(<App />, document.getElementById('main'));
