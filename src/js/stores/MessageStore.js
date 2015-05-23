@@ -8,12 +8,12 @@ const PouchDB = require('pouchdb');
 let db = new PouchDB('messages');
 
 // add private functions to modify data
-function addItem(to, content='', completed=false, score=1500) {
+function addItem(to, content='', sent=false, score=1500) {
   return db.put({
     _id: new Date().toJSON(),
     to: to,
     content: content,
-    completed: completed,
+    sent: sent,
     score: score
   });
 };

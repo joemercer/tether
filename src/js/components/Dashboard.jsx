@@ -19,7 +19,7 @@ let Dashboard = React.createClass({
     let self = this;
 
     MessageStore.getFiltered(function(task){
-      return !task.completed;
+      return !task.sent;
     }).then(function(tasks){
       self.setState({
         tasks: tasks
@@ -35,7 +35,7 @@ let Dashboard = React.createClass({
     MessageStore.addChangeListener(this._onChange);
 
     MessageStore.getFiltered(function(task){
-      return !task.completed;
+      return !task.sent;
     }).then(function(tasks){
       self.setState({
         tasks: tasks

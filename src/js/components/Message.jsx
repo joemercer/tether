@@ -20,7 +20,7 @@ let Message = React.createClass({
         _id: 0,
         to: '',
         content: '',
-        completed: false
+        sent: false
       }
     };
   },
@@ -35,7 +35,7 @@ let Message = React.createClass({
   },
 
   handleClick(message) {
-    message.completed = true;
+    message.sent = true;
     this._updateMessageInstantly(message);
   },
 
