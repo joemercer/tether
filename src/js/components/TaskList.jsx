@@ -1,5 +1,5 @@
 const React = require('react');
-const Task = require('./Task.jsx');
+const Task = require('./Message.jsx');
 
 let TaskList = React.createClass({
   getDefaultProps() {
