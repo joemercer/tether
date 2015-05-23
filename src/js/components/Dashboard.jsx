@@ -4,7 +4,7 @@ const MessageStore = require('../stores/MessageStore');
 const ContactStore = require('../stores/ContactStore');
 const ActionCreator = require('../actions/ActionCreators');
 
-const TaskList = require('./TaskList.jsx');
+const Messages = require('./Messages.jsx');
 
 
 let Dashboard = React.createClass({
@@ -53,7 +53,7 @@ let Dashboard = React.createClass({
     let {tasks} = this.state;
     return (
       <div>
-        <TaskList messages={tasks} />
+        <Messages messages={tasks} />
       </div>
     );
   }
