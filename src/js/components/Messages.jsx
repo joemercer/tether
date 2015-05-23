@@ -3,9 +3,35 @@ const Task = require('./Message.jsx');
 
 const MessageStore = require('../stores/MessageStore');
 
+// const GetMessages = function(){
+//   return MessageStore.getFiltered(function(message){
+//     return !message.sent;
+//   });
+// };
+
 const GetMessages = function(){
-  return MessageStore.getFiltered(function(message){
-    return !message.sent;
+  return MessageStore.getAll().then(function(messages){
+    return new Promise(function(resolve, reject){
+      if (messages) {
+        resolve(messages.filter(function(message){
+          return !message.sent;
+        }));
+      }
+      else {
+        reject({error: '!!! Error: no response'});
+      }
+    });
+  }).then(function(messages){
+    return new Promise(function(resolve, reject){
+      if (messages) {
+        resolve(messages.sort(function(x,y){
+          return x.score < y.score;
+        }));
+      }
+      else {
+        reject({error: '!!! Error: no response'});
+      }
+    });
   });
 };
 
