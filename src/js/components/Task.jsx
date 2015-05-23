@@ -18,7 +18,7 @@ let Task = React.createClass({
       task: {
         _id: 0,
         to: '',
-        message: '',
+        content: '',
         completed: false
       }
     };
@@ -29,7 +29,7 @@ let Task = React.createClass({
 
   handleChange(e){
     let task = this.props.task;
-    task.message = e.target.value;
+    task.content = e.target.value;
     this._updateTask(task);
   },
 
@@ -43,8 +43,8 @@ let Task = React.createClass({
     return (
       <li className="task-item">
         <h4>{task.to}</h4>
-        <ContentEditable html={task.message} onChange={this.handleChange} />
-        <p>Saved: {task.message}</p>
+        <ContentEditable html={task.content} onChange={this.handleChange} />
+        <p>Saved: {task.content}</p>
         <button className="ui button" onClick={this.handleClick.bind(this, task)}>Send</button>
       </li>
     );
