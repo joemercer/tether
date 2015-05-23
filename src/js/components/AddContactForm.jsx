@@ -3,31 +3,50 @@ const ActionCreator = require('../actions/ActionCreators');
 
 let AddContactForm = React.createClass({
 
-  getDefaultProps() {
+  getInitialState() {
     return {
       newContact: {
-        name: null,
-        email: '',
+        name: 'Mom',
+        email: 'mom@gmail.com',
         cadence: 12 // messages per year
       }
     };
   },
 
+  getNullState() {
+    return {
+      newContact: {
+        name: null,
+        email: null,
+        cadence: null // messages per year
+      }
+    };
+  },
+
   updateName(e) {
-    this.props.newContact.name = e.target.value;
+    this.state.newContact.name = e.target.value;
+    this.setState(this.state);
   },
 
   updateEmail(e) {
-    this.props.newContact.email = e.target.value;
+    this.state.newContact.email = e.target.value;
+    this.setState(this.state);
   },
 
   updateCadence(e) {
-    debugger
-    // this.props.newContact.email = e.target.value;
+    let cadence = parseInt(e.target.value);
+    cadence = (cadence > 0) ? cadence : 0;
+    this.state.newContact.cadence = cadence;
+    this.setState(this.state);
+  },
+
+  submitNewContact(e) {
+    ActionCreator.Contacts.add(this.state.newContact);
+    this.setState(this.getNullState());
   },
 
   render() {
-    let {newContact} = this.props;
+    let {newContact} = this.state;
     return (
       <form className="ui form">
 
@@ -43,30 +62,15 @@ let AddContactForm = React.createClass({
             <input type="email" name="email" placeholder="Email" value={newContact.email} onChange={this.updateEmail} />
           </div>
         </div>
+
         <h4 className="ui dividing header">How frequently would you like to contact this person?</h4>
 
-        <div className="grouped fields">
-          <div className="field">
-            <div className="ui radio checkbox">
-              <input type="radio" onClick={this.updateCadence} />
-              <label>Twice weekly</label>
-            </div>
-          </div>
-          <div className="field">
-            <div className="ui radio checkbox">
-              <input type="radio" name="cadence" onChange={this.updateCadence} />
-              <label>Weekly</label>
-            </div>
-          </div>
-          <div className="field">
-            <div className="ui radio checkbox">
-              <input type="radio" name="cadence" checked={newContact.cadence === 12} onChange={this.updateCadence} />
-              <label>Monthly</label>
-            </div>
-          </div>
+        <div className="field">
+          <label>Cadence (in messages per year)</label>
+          <input type="text" name="cadence" placeholder="Cadence" value={newContact.cadence} onChange={this.updateCadence} />
         </div>
 
-        <div className="ui submit button">Add New Contact</div>
+        <button className="ui submit button" onClick={this.submitNewContact}>Add New Contact</button>
 
       </form>
     );

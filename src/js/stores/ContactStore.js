@@ -36,12 +36,13 @@ const PouchDB = require('pouchdb');
 
 let db = new PouchDB('contacts');
 
-function addItem(name, cadence) {
+function addItem(name, email, cadence) {
 	var now = new Date();
   return db.put({
-    _id: new Date().toJSON(),
+    _id: now.toJSON(),
     name: name,
-    cadence: cadence, // number of messages to send monthly
+    email: email,
+    cadence: cadence, // number of messages to send yearly
     nextTimeToSendMessage: now
   });
 };
@@ -99,7 +100,7 @@ let ContactStore = assign({}, BaseStore, {
     switch(action.type) {
     	// add new contact
       case Constants.ActionTypes.ADD_CONTACT:
-      	addItem(action.item.name, action.item.cadence).then(function(resp){
+      	addItem(action.item.name, action.item.email, action.item.cadence).then(function(resp){
       		ContactStore.emitChange();
       	});
         break;
