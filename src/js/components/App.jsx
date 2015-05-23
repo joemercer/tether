@@ -19,10 +19,8 @@ let App = React.createClass({
     return (
       <div className="content">
         <Header />
-        <h1>Tether</h1>
-        <button className="ui button" onClick={this.createMessages}>Create More Messages</button>
+
         <br />
-        <hr />
 
         <RouteHandler />
       </div>
