@@ -70,7 +70,7 @@ let AddContactForm = React.createClass({
           <input type="text" name="cadence" placeholder="Cadence" value={newContact.cadence} onChange={this.updateCadence} />
         </div>
 
-        <button className="ui submit button" onClick={this.submitNewContact}>Add New Contact</button>
+        <div className="ui submit button" onClick={this.submitNewContact}>Add New Contact</div>
 
       </form>
     );
