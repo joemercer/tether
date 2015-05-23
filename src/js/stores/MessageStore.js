@@ -42,6 +42,19 @@ let MessageStore = assign({}, BaseStore, {
     });
   },
 
+  getMinScore() {
+    return this.getAll().then(function(messages){
+      if (!messages.length) {
+        return self.minScore = 1500;
+      }
+      return self.minScore = messages.filter(function(message){
+        return !message.sent;
+      }).sort(function(x,y){
+        return x.score > y.score;
+      })[0].score;
+    });
+  },
+
   // register store with dispatcher, allowing actions to flow through
   dispatcherIndex: AppDispatcher.register(function(payload) {
     let action = payload.action;

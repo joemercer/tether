@@ -1,6 +1,8 @@
 const React = require('react');
 const ActionCreator = require('../actions/ActionCreators');
 
+const MessageStore = require('../stores/MessageStore');
+
 const ContentEditable = require('./ContentEditable.jsx');
 
 const debounce = require('lodash.debounce');
@@ -40,8 +42,11 @@ let Message = React.createClass({
   },
 
   updateScore(message) {
-    message.score = message.score - 1;
-    this._updateMessageInstantly(message);
+    var self = this;
+    MessageStore.getMinScore().then(function(min){
+      message.score = min - 1;
+      self._updateMessageInstantly(message);
+    });
   },
 
   render() {
