@@ -42,29 +42,6 @@ let MessageStore = assign({}, BaseStore, {
     });
   },
 
-  // return all documents filtered by filter
-  getFiltered(filter) {
-    return db.allDocs({include_docs: true}).then(function(resp){
-      return new Promise(function(resolve, reject){
-        if (resp) {
-          resolve(resp.rows.map(row => row.doc));
-        }
-        else {
-          reject({error: '!!! Error: no response'});
-        }
-      });
-    }).then(function(resp){
-      return new Promise(function(resolve, reject){
-        if (!resp.error) {
-          resolve(resp.filter(filter));
-        }
-        else {
-          reject({error: '!!! Error: no response'});
-        }
-      });
-    });
-  },
-
   // register store with dispatcher, allowing actions to flow through
   dispatcherIndex: AppDispatcher.register(function(payload) {
     let action = payload.action;

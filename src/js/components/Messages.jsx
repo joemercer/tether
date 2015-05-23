@@ -3,12 +3,6 @@ const Task = require('./Message.jsx');
 
 const MessageStore = require('../stores/MessageStore');
 
-// const GetMessages = function(){
-//   return MessageStore.getFiltered(function(message){
-//     return !message.sent;
-//   });
-// };
-
 const GetMessages = function(){
   return MessageStore.getAll().then(function(messages){
     return new Promise(function(resolve, reject){
