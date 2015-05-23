@@ -1,5 +1,6 @@
 .DS_Store
 /bower_components/
 /dist/
+/.publish
 /node_modules/
 /src/semantic/dist/

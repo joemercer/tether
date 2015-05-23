@@ -35,5 +35,8 @@ module.exports = {
   watch: {
     src: 'src/**/*.*',
     tasks: ['build']
+  },
+  ghPages: {
+    src: 'dist/**/*'
   }
 };
