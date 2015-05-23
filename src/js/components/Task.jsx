@@ -1,7 +1,7 @@
 const React = require('react');
 const ActionCreator = require('../actions/ActionCreators');
 
-const Message = require('./Message.jsx');
+const ContentEditable = require('./ContentEditable.jsx');
 
 const debounce = require('lodash.debounce');
 
@@ -43,7 +43,7 @@ let Task = React.createClass({
     return (
       <li className="task-item">
         <h4>{task.to}</h4>
-        <Message html={task.message} onChange={this.handleChange} />
+        <ContentEditable html={task.message} onChange={this.handleChange} />
         <p>Saved: {task.message}</p>
         <button className="ui button" onClick={this.handleClick.bind(this, task)}>Send</button>
       </li>

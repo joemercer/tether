@@ -1,12 +1,12 @@
 var React = require('react');
 
-var Message = React.createClass({
+var ContentEditable = React.createClass({
 	render: function(){
-		return <p 
+		return <div 
 			onInput={this.emitChange} 
 			onBlur={this.emitChange} 
 			contentEditable 
-			dangerouslySetInnerHTML={{__html: this.props.html}}></p>;
+			dangerouslySetInnerHTML={{__html: this.props.html}}></div>;
 	},
 
 	shouldComponentUpdate: function(nextProps){
@@ -29,4 +29,4 @@ var Message = React.createClass({
 	}
 });
 
-module.exports = Message;
+module.exports = ContentEditable;
