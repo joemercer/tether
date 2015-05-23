@@ -36,7 +36,7 @@ let MessageStore = assign({}, BaseStore, {
           resolve(resp.rows.map(row => row.doc));
         }
         else {
-          reject({error: 'ERROR: no response'});
+          reject({error: '!!! Error: no response'});
         }
       });
     });
@@ -50,7 +50,7 @@ let MessageStore = assign({}, BaseStore, {
           resolve(resp.rows.map(row => row.doc));
         }
         else {
-          reject({error: 'ERROR: no response'});
+          reject({error: '!!! Error: no response'});
         }
       });
     }).then(function(resp){
@@ -59,7 +59,7 @@ let MessageStore = assign({}, BaseStore, {
           resolve(resp.filter(filter));
         }
         else {
-          reject({error: 'ERROR: no response'});
+          reject({error: '!!! Error: no response'});
         }
       });
     });
@@ -72,12 +72,9 @@ let MessageStore = assign({}, BaseStore, {
     switch(action.type) {
       // add a task
       case Constants.ActionTypes.ADD_MESSAGE:
-        let text = action.item.to.trim();
-        // NOTE: if this action needs to wait on another store:
-        // AppDispatcher.waitFor([OtherStore.dispatchToken]);
-        // For details, see: http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html#why-we-need-a-dispatcher
-        if (text !== '') {
-          addItem(text);
+        action.item.to = action.item.to.trim();
+        if (action.item.to !== '') {
+          addItem(action.item.to);
           MessageStore.emitChange();
         }
         break;
@@ -87,8 +84,6 @@ let MessageStore = assign({}, BaseStore, {
           MessageStore.emitChange();
         });
         break;
-
-      // add more cases for other actionTypes...
     }
   })
 

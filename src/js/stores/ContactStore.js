@@ -1,31 +1,3 @@
-
-// TaskGeneratorStore generates tasks
-
-// TaskGenerator
-// - task that will be generated
-// - when to next generate the task
-// - lastTimeGenerated
-
-
-// Contact
-// - info about what type of task to generate
-// - nextTimeToGenerateTask
-
-
-
-
-
-
-// _________
-
-// In general
-
-// We should probably have Contacts, and Messages, and Users
-// Contacts generate new Messages (in draft format)
-// Users send those Messages out 
-
-
-
 const AppDispatcher = require('../dispatchers/AppDispatcher');
 const Constants = require('../constants/AppConstants');
 const BaseStore = require('./BaseStore');
@@ -61,7 +33,7 @@ function getAll() {
         resolve(resp.rows.map(row => row.doc));
       }
       else {
-        reject({error: 'ERROR: no response'});
+        reject({error: '!!! Error: no response'});
       }
     });
   });
@@ -118,7 +90,5 @@ let ContactStore = assign({}, BaseStore, {
   })
 
 });
-
-
 
 module.exports = ContactStore;
