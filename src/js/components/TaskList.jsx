@@ -4,16 +4,16 @@ const Task = require('./Message.jsx');
 let TaskList = React.createClass({
   getDefaultProps() {
     return {
-      tasks: []
+      messages: []
     };
   },
 
   render() {
-    let {tasks} = this.props;
+    let {messages} = this.props;
     return (
       <ul className="task-list">
-        {tasks.map(task =>
-          <Task key={task._id} message={task} />
+        {messages.map(message =>
+          <Task key={message._id} message={message} />
         )}
       </ul>
     );

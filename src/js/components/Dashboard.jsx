@@ -53,7 +53,7 @@ let Dashboard = React.createClass({
     let {tasks} = this.state;
     return (
       <div>
-        <TaskList tasks={tasks} />
+        <TaskList messages={tasks} />
       </div>
     );
   }
