@@ -1,7 +1,7 @@
 const React = require('react');
 const Task = require('./Message.jsx');
 
-let TaskList = React.createClass({
+let Messages = React.createClass({
   getDefaultProps() {
     return {
       messages: []
@@ -20,4 +20,4 @@ let TaskList = React.createClass({
   }
 });
 
-module.exports = TaskList;
+module.exports = Messages;
