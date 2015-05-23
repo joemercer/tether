@@ -13,7 +13,7 @@ let TaskList = React.createClass({
     return (
       <ul className="task-list">
         {tasks.map(task =>
-          <Task key={task._id} task={task} />
+          <Task key={task._id} message={task} />
         )}
       </ul>
     );

@@ -8,14 +8,15 @@ const debounce = require('lodash.debounce');
 
 // function for updating a task
 // created here so we can debounce it later
-const UpdateTaskInstantly = function(task){
-  ActionCreator.Messages.update(task);
+const UpdateMessageInstantly = function(message){
+  ActionCreator.Messages.update(message);
 };
 
-let Task = React.createClass({
+let Message = React.createClass({
+
   getDefaultProps() {
     return {
-      task: {
+      message: {
         _id: 0,
         to: '',
         content: '',
@@ -24,31 +25,32 @@ let Task = React.createClass({
     };
   },
 
-  _updateTaskInstantly: UpdateTaskInstantly,
-  _updateTask: debounce(UpdateTaskInstantly, 1000),
+  _updateMessageInstantly: UpdateMessageInstantly,
+  _updateMessage: debounce(UpdateMessageInstantly, 1000),
 
   handleChange(e){
-    let task = this.props.task;
-    task.content = e.target.value;
-    this._updateTask(task);
+    let message = this.props.message;
+    message.content = e.target.value;
+    this._updateMessage(message);
   },
 
-  handleClick(task) {
-    task.completed = true;
-    this._updateTaskInstantly(task);
+  handleClick(message) {
+    message.completed = true;
+    this._updateMessageInstantly(message);
   },
 
   render() {
-    let {task} = this.props;
+    let {message} = this.props;
     return (
       <li className="task-item">
-        <h4>{task.to}</h4>
-        <ContentEditable html={task.content} onChange={this.handleChange} />
-        <p>Saved: {task.content}</p>
-        <button className="ui button" onClick={this.handleClick.bind(this, task)}>Send</button>
+        <h4>{message.to}</h4>
+        <ContentEditable html={message.content} onChange={this.handleChange} />
+        <p>Saved: {message.content}</p>
+        <button className="ui button" onClick={this.handleClick.bind(this, message)}>Send</button>
       </li>
     );
   }
+
 });
 
-module.exports = Task;
+module.exports = Message;
