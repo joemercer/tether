@@ -45,3 +45,7 @@ Also need to build Semantic
 - run "gulp build"
 - !!! should probably keep all of /semantic out of source code control
 - since it can be rebuilt from whatever the semantic-ui build thing is
+
+
+
+`gulp release` to push the working version live on github pages
