@@ -41,7 +41,7 @@ let Messages = React.createClass({
   render() {
     let {messages} = this.state;
     return (
-      <ul className="task-list">
+      <ul className="message-list">
         {messages.map(message =>
           <Task key={message._id} message={message} />
         )}

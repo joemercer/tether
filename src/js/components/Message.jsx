@@ -39,14 +39,22 @@ let Message = React.createClass({
     this._updateMessageInstantly(message);
   },
 
+  updateScore(message) {
+    message.score = message.score - 1;
+    this._updateMessageInstantly(message);
+  },
+
   render() {
     let {message} = this.props;
     return (
-      <li className="task-item">
+      <li className="message-item">
         <h4>{message.to}</h4>
         <ContentEditable html={message.content} onChange={this.updateContent} />
         <p>Saved: {message.content}</p>
-        <button className="ui button" onClick={this.updateSent.bind(this, message)}>Send</button>
+        <div className="message-toolbar">
+          <button className="ui button" onClick={this.updateScore.bind(this, message)}>Snooze</button>
+          <button className="ui button" onClick={this.updateSent.bind(this, message)}>Send</button>
+        </div>
       </li>
     );
   }

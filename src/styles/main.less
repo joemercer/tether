@@ -13,15 +13,20 @@
   text-align: center;
 }
 
-.task-list {
-  margin: 20px auto;
+.message-list {
+  padding: 0;
   text-align: left;
 
-  label {
-    display: block;
-  }
-}
+  .message-item {
+    list-style-type: none;
+    padding: 10px;
 
-.task-item {
-  list-style-type: none;
+    &:hover {
+      background-color: yellow;
+    }
+  }
+
+  .message-toolbar {
+    text-align: right;
+  }
 }
