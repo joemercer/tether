@@ -28,13 +28,13 @@ let Message = React.createClass({
   _updateMessageInstantly: UpdateMessageInstantly,
   _updateMessage: debounce(UpdateMessageInstantly, 1000),
 
-  handleChange(e){
+  updateContent(e){
     let message = this.props.message;
     message.content = e.target.value;
     this._updateMessage(message);
   },
 
-  handleClick(message) {
+  updateSent(message) {
     message.sent = true;
     this._updateMessageInstantly(message);
   },
@@ -44,9 +44,9 @@ let Message = React.createClass({
     return (
       <li className="task-item">
         <h4>{message.to}</h4>
-        <ContentEditable html={message.content} onChange={this.handleChange} />
+        <ContentEditable html={message.content} onChange={this.updateContent} />
         <p>Saved: {message.content}</p>
-        <button className="ui button" onClick={this.handleClick.bind(this, message)}>Send</button>
+        <button className="ui button" onClick={this.updateSent.bind(this, message)}>Send</button>
       </li>
     );
   }
