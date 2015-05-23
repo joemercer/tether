@@ -49,11 +49,9 @@ let MessageStore = assign({}, BaseStore, {
     switch(action.type) {
       // add a task
       case Constants.ActionTypes.ADD_MESSAGE:
-        action.item.to = action.item.to.trim();
-        if (action.item.to !== '') {
-          addItem(action.item.to);
+        addItem(action.item.to).then(function(resp){
           MessageStore.emitChange();
-        }
+        });
         break;
       // update a task
       case Constants.ActionTypes.UPDATE_MESSAGE:
