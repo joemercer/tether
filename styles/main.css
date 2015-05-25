@@ -15,13 +15,17 @@
   padding: 50px;
   text-align: center;
 }
-.task-list {
-  margin: 20px auto;
+.message-list {
+  padding: 0;
   text-align: left;
 }
-.task-list label {
-  display: block;
-}
-.task-item {
+.message-list .message-item {
   list-style-type: none;
+  padding: 10px;
+}
+.message-list .message-item:hover {
+  background-color: yellow;
+}
+.message-list .message-toolbar {
+  text-align: right;
 }
