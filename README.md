@@ -48,4 +48,4 @@ Also need to build Semantic
 
 
 
-`gulp release` to push the working version live on github pages
+`gulp deploy` to push the working version live on github pages
