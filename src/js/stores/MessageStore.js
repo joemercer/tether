@@ -31,14 +31,7 @@ let MessageStore = assign({}, BaseStore, {
   // public methods used by Controller-View to operate on data
   getAll() {
     return db.allDocs({include_docs: true}).then(function(resp){
-      return new Promise(function(resolve, reject){
-        if (resp) {
-          resolve(resp.rows.map(row => row.doc));
-        }
-        else {
-          reject({error: '!!! Error: no response'});
-        }
-      });
+      return Promise.all(resp.rows.map(row => row.doc));
     });
   },
 
